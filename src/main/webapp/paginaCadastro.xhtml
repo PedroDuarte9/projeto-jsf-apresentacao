@@ -2,43 +2,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
-	  xmlns:p="http://primefaces.org/ui">
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <!-- Nome, Telefone, Email-->
 <h:body>
+<ui:define name="title">Cadastro</ui:define>
 	<h:body>
+	<ui:define name="title">Cadastro</ui:define>
 		<h:form>
-			<h:panelGrid columns="2">	
-				<h:outputFormat value="Nome: " for="nomePessoa" />
-				<h:inputText value="#{pessoasBean}"/>
+		<ui:define name="title">Cadastro</ui:define>
+
+			<p:panelGrid columns="2">	
+			
+				<h:outputLabel value="ID:" />
+				<p:inputText id="campoId" value="#{pessoasControl.pessoa.id}"
+				readonly="true"/>
+			
+				<h:outputFormat id="nomeP" value="Nome: " for="nomePessoa" />
+				<p:inputText value="#{pessoasControl.pessoa.nome}"/>
 				
 				<h:outputFormat value="Número: " for="numeroPessoa" />
-				<h:inputText value="#{}"/>
+				<p:inputText value="#{pessoasControl.pessoa.numeroTelefone}"/>
 				
 				<h:outputFormat value="E-mail: " for="emailPessoa" />
-				<h:inputText value="#{}"/>
+				<p:inputText value="#{pessoasControl.pessoa.email}"/>
 				
-				<h:commandButton value="Enviar" action="#{}"/>
-				<h:commandButton value="Listar" action="#{employeeControl.listaTodos}"/>
+				
+				<p:commandButton value="Enviar" id="botaoSalvar" action="#{pessoasControl.salvar()}"/>
+				<p:commandButton value="Atualizar" id="botaoAtualizar" action="#{pessoasControl.atualizar()}"/>
+				<p:commandButton value="Remover" id="botaoRemover" action="#{pessoasControl.remover()}"/>
+				<p:commandButton value="Listar" action="#{pessoasControl.listarTodos()}"/>
+				
+			<!--	<h:message id="mensagemEstatica" style="color: green;" >Mensagem de teste estática</h:message>
+			 <h:message id="mensagemCadastro" for="botaoSalvar" style="color: green;" rendered="#{pessoasControl.cadastroRealizado}" />
+				<h:outputText value="#{pessoasControl.mensagem}" rendered="#{pessoasControl.mensagem}"/> -->
+				
 				
 				<div class="card">
-					<h:dataTable value="#{employeeControl.listEmployees}" 
-					var="listTrabalhadores" >
+					<h:dataTable value="#{pessoasControl.listaPessoas}" 
+					var="listaTodos" >
 						<p:column headerText="Name: ">
-							<h:outputText value="#{listTrabalhadores.nameEmployee}"/>
+							<h:outputText value="#{listaTodos.nome}"/>
 						</p:column>
 						<p:column headerText="Gross Salary: ">
-							<h:outputText value="#{listTrabalhadores.grossSalary}"/>
+							<h:outputText value="#{listaTodos.numeroTelefone}"/>
 						</p:column>
 						<p:column headerText="Tax: ">
-							<h:outputText value="#{listTrabalhadores.tax}"/>
+							<h:outputText value="#{listaTodos.email}"/>
 						</p:column>
 					</h:dataTable>
 				</div>
 				
-			</h:panelGrid>
+			</p:panelGrid>
 		</h:form>
 	</h:body>
 </h:body>

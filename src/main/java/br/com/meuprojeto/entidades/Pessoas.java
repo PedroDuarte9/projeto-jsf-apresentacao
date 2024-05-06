@@ -3,6 +3,7 @@ package br.com.meuprojeto.entidades;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +16,14 @@ public class Pessoas implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_CAD")
+	private Long id;
+	@Column(name = "NOME_COMPLETO")
 	private String nome;
+	@Column(name = "NUMERO_PRINCIPAL")
 	private long numeroTelefone;
+	@Column(name = "EMAIL_PRINCIPAL")
 	private String email;
 	
 	
@@ -64,13 +69,13 @@ public class Pessoas implements Serializable {
 
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id, email, nome, numeroTelefone);
+		return Objects.hash(id, email, nome, numeroTelefone);
 	}
 
 
@@ -83,7 +88,7 @@ public class Pessoas implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoas other = (Pessoas) obj;
-		return Objects.equals(Id, other.Id) && Objects.equals(email, other.email) && Objects.equals(nome, other.nome)
+		return Objects.equals(id, other.id) && Objects.equals(email, other.email) && Objects.equals(nome, other.nome)
 				&& numeroTelefone == other.numeroTelefone;
 	}
 

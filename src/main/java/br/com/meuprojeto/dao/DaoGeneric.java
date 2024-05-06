@@ -22,12 +22,8 @@ public class DaoGeneric<T>{
 		
 		entityTransaction.commit();
 		entityManager.close();	
+		System.out.println("Salvou");
 		
-	}
-	
-	public void salvarTemp(Employee entidade) {
-		List<Employee> listTemp = new ArrayList<>();
-		listTemp.add(entidade);
 	}
 	
 	public void remover(T entidade) {
