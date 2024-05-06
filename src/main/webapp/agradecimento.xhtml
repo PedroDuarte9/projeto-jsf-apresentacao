@@ -5,18 +5,12 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>Olá Mundo !</title>
-		<script>
-			function atencao(){
-				alert('Atenção, você será redirecionado para outra página !')
-			}
-		</script>
 </h:head>
 <!-- Em JSF é importante definir o id fo form -->
 <h:body>
 	<h:form id="formPessoa">
-		<h1>Olá, mundo JSF!</h1>
-		<h:commandButton value="Navegar" action="primeirapagina" onclick="atencao();"/>
-		<h:commandButton value="Pagina Cadastro" action="paginaCadastro"/>
+		<h1>Obrigado !</h1>
+		<h:outputText value="#{pessoaBean.nome}"/>
 	</h:form>
 </h:body>
 </html>

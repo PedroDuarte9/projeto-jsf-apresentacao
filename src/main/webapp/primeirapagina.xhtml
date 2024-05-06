@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Olá Mundo !</title>
+	<script>
+			function alterandoTexto(){
+				var campo = document.getElementById('formInicial:campoNome')
+				campo.value = 'Eu cliquei no botão';
+			}
+		</script>
+</h:head>
+
+<h:body>
+	<!-- Em JSF é importante definir o id form -->
+	<h:form id="formInicial">
+		<h1>Olá, mundo JSF!</h1>
+
+		<h:outputLabel value="ID:" />
+		<h:inputText id="campoId" value="#{pessoaBean.pessoa.id}"
+			readonly="true" />
+
+		<br />
+		<h:outputLabel value="Nome:" for="campoNome" />
+		<h:inputText id="campoNome" value="#{pessoaBean.pessoa.nome}" />
+		<br />
+
+		<h:outputLabel value="Sobrenome:" for="campoSobrenome" />
+		<h:inputText id="campoSobrenome"
+			value="#{pessoaBean.pessoa.sobrenome}" />
+		<br />
+		<h:outputLabel value="Idade:" for="campoIdade" />
+		<h:inputText id="campoIdade" value="#{pessoaBean.pessoa.idade}" />
+
+		<!-- <br/>
+		<h:outputLabel value="Data Nascimento:" for="campoNascimento"/> 
+		<h:inputText id="campoNascimento" value="#{pessoaBean.pessoa.dataNascimento}"/>
+		 
+-->
+
+		<div class="card">
+			<h:dataTable value="#{pessoaBean.listaPessoas}"
+			 var="listaPessoas">
+				<p:column headerText="Coluna ID: ">
+					<h:outputText value="#{listaPessoas.id}" />
+				</p:column>
+
+				<p:column headerText="Nome: ">
+					<h:outputText value="#{listaPessoas.nome}" />
+				</p:column>
+
+				<p:column headerText="Sobrenome: ">
+					<h:outputText value="#{listaPessoas.sobrenome}" />
+				</p:column>
+
+				<p:column headerText="Idade: ">
+					<h:outputText value="#{listaPessoas.idade}" />
+				</p:column>
+
+				<p:column>
+					<h:commandLink value="Editar" >
+						<f:setPropertyActionListener value="#{pessoaBean.pessoa}"
+							target="#{listaPessoas}" />
+					</h:commandLink>
+				</p:column>
+			</h:dataTable>
+
+		</div>
+
+
+		<h:commandButton value="Enviar" action="#{pessoaBean.salvar}" />	
+		--
+		
+		<h:commandButton value="Remover" action="#{pessoaBean.remover}" />
+		--
+		
+		<h:commandButton value="Novo" action="#{pessoaBean.novo}" />
+		--
+		
+		<h:commandButton value="Listar" action="#{pessoaBean.carregarPessoas}" />
+
+
+	</h:form>
+</h:body>
+</html>
