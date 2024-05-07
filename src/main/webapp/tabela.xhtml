@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+<!-- Nome, Telefone, Email-->
+<h:body>
+
+	<div id="card">
+		<h:dataTable value="#{pessoasControl.listaPessoas}" var="pessoas">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pessoas.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				<h:outputText value="#{pessoas.nome}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Numero de telefone</f:facet>
+				<h:outputText value="#{pessoas.numeroTelefone}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				<h:outputText value="#{pessoas.email}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton value="Editar"
+					action="#{pessoasControl.editarPessoa(pessoas)}" />
+			</h:column>
+			<h:column>
+					 <h:commandButton value="Editar Linha" action="#{pessoasControl.editarLinha(pessoas)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton value="Remover"
+					action="#{pessoasControl.remover()}" />
+			</h:column>
+
+		</h:dataTable>
+
+	</div>
+</h:body>
+</html>

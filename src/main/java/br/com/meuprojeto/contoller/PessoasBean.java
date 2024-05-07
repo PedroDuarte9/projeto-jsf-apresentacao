@@ -3,14 +3,16 @@ package br.com.meuprojeto.contoller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import br.com.meuprojeto.dao.DaoGeneric;
 import br.com.meuprojeto.entidades.Pessoas;
 
+
+@ViewScoped
 @ManagedBean(name = "pessoasControl")
-@SessionScoped
 public class PessoasBean {
 	
 	private Pessoas pessoa = new Pessoas();
@@ -18,6 +20,7 @@ public class PessoasBean {
 	private DaoGeneric<Pessoas> daoGeneric = new DaoGeneric<Pessoas>();	
 	private boolean cadastroRealizado = false;
 	private String mensagem = "";
+	
 	
 	public Pessoas getPessoa() {
 		return pessoa;
@@ -57,24 +60,38 @@ public class PessoasBean {
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
-
+	
 	public void salvar() {
-		daoGeneric.salvar(pessoa);
-		pessoa = new Pessoas();
+		pessoa = daoGeneric.atualizar(pessoa);
+		
 		setCadastroRealizado(true);
-		setMensagem("Cadastrado com sucesso !");
-		System.out.println("Cadastrado");
+		//setMensagem("Cadastrado com sucesso !");
+		//System.out.println("Cadastrado");
+	}
+
+	
+	public void atualizar() {
+		pessoa = daoGeneric.atualizar(pessoa);
+	}
+
+	@PostConstruct
+	public void listarTodos() {
+		listaPessoas = daoGeneric.listaBanco(Pessoas.class);
 	}
 	
+	public void novo() {
+		pessoa = new Pessoas();
+	}
 	public void remover() {
+		daoGeneric.removerPorId(pessoa);
+	}
+	public void removerLinha() {
 		daoGeneric.remover(pessoa);
 	}
+	
 
-	public void listarTodos() {
-		listaPessoas.add(pessoa);
-		
-		for(Pessoas p : listaPessoas) {
-			System.out.println(p);
-		}
-	}
+    public void editarLinha(Pessoas pessoaSelecionada) {
+        this.pessoa = pessoaSelecionada;
+        // Aqui você pode adicionar qualquer lógica adicional necessária para editar a linha
+    }
 }

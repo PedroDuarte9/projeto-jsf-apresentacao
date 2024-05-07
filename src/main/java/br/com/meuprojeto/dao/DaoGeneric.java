@@ -35,6 +35,7 @@ public class DaoGeneric<T>{
 		
 		entityTransaction.commit();
 		entityManager.close();
+		System.out.println("Deletado");
 	}
 	
 	public void removerPorId(T entidade) {
@@ -48,6 +49,7 @@ public class DaoGeneric<T>{
 		query.executeUpdate();
 		entityTransaction.commit();
 		entityManager.close();
+		System.out.println("Removido");
 	}
 	
 	

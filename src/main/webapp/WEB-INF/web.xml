@@ -10,6 +10,16 @@
 	<context-param>
     <param-name>primefaces.THEME</param-name>
     <param-value>bootstrap</param-value>
+    
 </context-param>
+<context-param>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>server</param-value>
+</context-param>
+<context-param>
+    <param-name>javax.faces.CLIENT_WINDOW_TIME_TO_LIVE</param-name>
+    <param-value>1800000</param-value> <!-- Tempo de vida em milissegundos (30 minutos) -->
+</context-param>
+
 	
 </web-app>
